@@ -2,7 +2,7 @@
 
 ## 1. Intellectual Property
 All code, design, and content in this repository is 
-copyright © 2024 [Your Name]. All rights reserved.
+copyright © 2025 [NiaShare]. All rights reserved.
 
 ## 2. Restrictions
 You may NOT:
