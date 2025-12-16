@@ -1,9 +1,9 @@
 // Service Worker for NiaShare PWA
 const CACHE_NAME = 'niashare-v1.3';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  '/NiaShare/',
+  '/NiaShare/index.html',
+  '/NiaShare/manifest.json'
 ];
 
 // Install event - cache essential files
