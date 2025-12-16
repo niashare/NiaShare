@@ -1,18 +1,38 @@
 <!DOCTYPE html>
-<!-- 
-  Copyright (c) 2025 [NiaShare]. All rights reserved.
-  NiaShare - Peer-to-Peer File Transfer App
-  This software is protected under copyright law.
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiaShare Beta 1.2 - Complete Integrated Version</title>
+    <title>NiaShare Beta 1.3 - PWA Ready</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="Direct. Secure. Instant - The Next-Gen Data Share">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NiaShare">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="NiaShare">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Enhanced PWA Support -->
+    <link rel="apple-touch-startup-image" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiMwZjE3MmEiLz48dGV4dCB4PSIyNTYiIHk9IjI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyOCIgZmlsbD0iIzYzNjZmMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiPk5TPC90ZXh0Pjwvc3ZnPg==">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjNjM2NmYxIi8+PHRleHQgeD0iMTYiIHk9IjIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBhbGlnbm1lbnQtYmFzZWxpbmU9Im1pZGRsZSI+TlM8L3RleHQ+PC9zdmc+">
+    
+    <!-- iOS specific -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUyIiBoZWlnaHQ9IjE1MiIgdmlld0JveD0iMCAwIDE1MiAxNTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE1MiIgaGVpZ2h0PSI1MTIiIHJ4PSIzMCIgZmlsbD0iIzYzNjZmMSIvPjx0ZXh0IHg9Ijc2IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQ4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgYWxpZ25tZW50LWJhc2VsaW5lPSJtaWRkbGUiPk5TPC90ZXh0Pjwvc3ZnPg==">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- ADDED QRCode Library -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.4.7/peerjs.min.js"></script>
+    
+    <!-- Keep all the existing CSS styles from niashare beta 1.3 -->
     <style>
         :root {
             /* Dark Theme (Default) */
@@ -142,8 +162,8 @@
         /* Header */
         .header {
             text-align: center;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
@@ -199,6 +219,18 @@
             justify-content: center;
             margin-bottom: 2.5rem;
             flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 768px) {
+            .quick-actions {
+                justify-content: center;
+                padding: 0 5px;
+                gap: 8px;
+                margin-bottom: 1.5rem;
+            }
         }
 
         .action-btn {
@@ -206,7 +238,7 @@
             backdrop-filter: blur(15px);
             border: 1.5px solid var(--glass-border);
             border-radius: 14px;
-            padding: 12px 24px;
+            padding: 12px 20px;
             color: var(--light);
             cursor: pointer;
             transition: var(--transition);
@@ -216,6 +248,24 @@
             font-weight: 600;
             font-size: 0.95rem;
             box-shadow: var(--shadow);
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-height: 44px; /* Better touch target */
+        }
+
+        @media (max-width: 480px) {
+            .action-btn {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .theme-text, .privacy-text, .offline-mode-text, .chat-text {
+                display: none;
+            }
+            
+            .action-btn span:not(.theme-text):not(.privacy-text):not(.offline-mode-text):not(.chat-text) {
+                display: inline;
+            }
         }
 
         .light-theme .action-btn {
@@ -246,6 +296,107 @@
         .light-theme .action-btn.offline-active {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.08) 100%);
             border-color: var(--offline);
+        }
+
+        /* Network Status Toggle Switch - NEW */
+        .network-status-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--glass);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .network-status-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .toggle-switch-container {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--gray-dark);
+            border-radius: 30px;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .light-theme .toggle-switch-container {
+            background: var(--light-gray);
+        }
+
+        .toggle-switch-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch-container.online {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+        }
+
+        .toggle-switch-container.offline {
+            background: linear-gradient(135deg, var(--offline) 0%, var(--offline-dark) 100%);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+
+        .toggle-switch-slider.online {
+            transform: translateX(30px);
+        }
+
+        .toggle-switch-slider.offline {
+            transform: translateX(3px);
+        }
+
+        .toggle-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .toggle-text.online {
+            color: var(--secondary);
+        }
+
+        .toggle-text.offline {
+            color: var(--offline);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.online {
+            background: var(--secondary);
+            box-shadow: 0 0 10px var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.offline {
+            background: var(--offline);
+            box-shadow: 0 0 10px var(--offline);
+            animation: offlinePulse 2s infinite;
         }
 
         /* Glass panels */
@@ -308,6 +459,8 @@
             border-radius: 16px;
             border: 1.5px solid var(--offline);
             animation: offlinePulse 3s infinite;
+            flex-wrap: wrap;
+            text-align: center;
         }
 
         .offline-status-icon {
@@ -337,17 +490,32 @@
             .connection-container {
                 grid-template-columns: 1fr;
             }
+            
+            .connection-container > div {
+                margin-bottom: 1.5rem;
+            }
+            
+            .connection-container > div:last-child {
+                margin-bottom: 0;
+            }
         }
 
-        /* Peer ID and Connection */
+        /* Peer ID and Connection - FIXED FOR MOBILE */
         .peer-id-container {
             display: flex;
+            flex-direction: column;
             gap: 12px;
             margin-bottom: 1rem;
         }
 
+        @media (min-width: 768px) {
+            .peer-id-container {
+                flex-direction: row;
+            }
+        }
+
         .peer-id {
-            flex: 1;
+            width: 100%;
             background: rgba(0, 0, 0, 0.25);
             border: 1.5px solid var(--gray-dark);
             border-radius: 14px;
@@ -359,6 +527,15 @@
             white-space: nowrap;
             font-weight: 500;
             transition: var(--transition);
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .peer-id {
+                flex: 1;
+            }
         }
 
         .light-theme .peer-id {
@@ -378,17 +555,24 @@
             color: white;
             border: none;
             border-radius: 14px;
-            padding: 0 28px;
+            padding: 16px 24px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             font-weight: 600;
             font-size: 1rem;
-            min-width: 120px;
-            justify-content: center;
+            width: 100%;
             box-shadow: 0 5px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        @media (min-width: 768px) {
+            .copy-btn {
+                width: auto;
+                min-width: 120px;
+            }
         }
 
         .light-theme .copy-btn {
@@ -426,14 +610,28 @@
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
         }
 
+        /* Connect Form - FIXED FOR MOBILE */
         .connect-form {
             display: flex;
+            flex-direction: column;
             gap: 12px;
         }
 
+        @media (min-width: 768px) {
+            .connect-form {
+                flex-direction: row;
+            }
+        }
+
         .connect-input-wrapper {
-            flex: 1;
             position: relative;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .connect-input-wrapper {
+                flex: 1;
+            }
         }
 
         .connect-input {
@@ -447,6 +645,7 @@
             transition: var(--transition);
             font-family: 'Monaco', 'Consolas', monospace;
             font-weight: 500;
+            min-height: 54px;
         }
 
         .light-theme .connect-input {
@@ -484,17 +683,24 @@
             color: white;
             border: none;
             border-radius: 14px;
-            padding: 0 32px;
+            padding: 16px 24px;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 700;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             font-size: 1.05rem;
-            min-width: 140px;
-            justify-content: center;
+            width: 100%;
             box-shadow: 0 5px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .connect-btn {
+                width: auto;
+                min-width: 140px;
+            }
         }
 
         .light-theme .connect-btn {
@@ -1117,7 +1323,7 @@
             transform: rotate(90deg);
         }
 
-        /* Chat Panel */
+        /* FIXED: Improved Chat Bubbles */
         .chat-container {
             display: flex;
             flex-direction: column;
@@ -1133,55 +1339,63 @@
             margin-bottom: 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .light-theme .chat-messages {
             background: rgba(255, 255, 255, 0.08);
         }
 
-        .message {
-            padding: 14px 18px;
-            border-radius: 16px;
-            max-width: 80%;
+        /* FIXED: Improved chat bubbles - proper alignment */
+        .chat-bubble {
+            padding: 10px 14px;
+            border-radius: 18px;
+            max-width: 85%;
             word-wrap: break-word;
-            line-height: 1.5;
-            animation: slideIn 0.3s ease;
+            overflow-wrap: break-word;
+            white-space: normal;
             position: relative;
-            overflow: hidden;
+            line-height: 1.4;
+            animation: slideIn 0.3s ease;
+            margin-bottom: 8px;
+            clear: both;
         }
 
-        .message::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            opacity: 0.5;
-        }
-
-        .message.sent {
+        .chat-bubble.sent {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            margin-left: auto;
             color: white;
+            margin-left: auto;
+            margin-right: 0;
+            border-bottom-right-radius: 4px;
+            float: right;
         }
 
-        .light-theme .message.sent {
+        .light-theme .chat-bubble.sent {
             background: linear-gradient(135deg, var(--light-primary) 0%, var(--light-primary-dark) 100%);
             color: white;
         }
 
-        .message.received {
+        .chat-bubble.received {
             background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
             margin-right: auto;
+            margin-left: 0;
+            border-bottom-left-radius: 4px;
             border: 1px solid var(--glass-border);
+            float: left;
         }
 
-        .light-theme .message.received {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid var(--glass-border);
+        .light-theme .chat-bubble.received {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--light-light);
+            border: 1px solid var(--light-glass-border);
+        }
+
+        /* Clear floats */
+        .chat-messages::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         /* Chat input container */
@@ -1249,6 +1463,15 @@
             z-index: 1000;
             max-width: 400px;
             backdrop-filter: blur(20px);
+        }
+
+        @media (max-width: 768px) {
+            .notification {
+                left: 20px;
+                right: 20px;
+                max-width: none;
+                top: 20px;
+            }
         }
 
         .light-theme .notification {
@@ -1434,38 +1657,288 @@
         .light-theme .stat-value-large {
             background: linear-gradient(135deg, var(--light-primary) 0%, var(--light-secondary) 100%);
         }
+        
+        /* Mobile-friendly tooltips */
+        @media (max-width: 768px) {
+            .action-btn {
+                position: relative;
+                overflow: visible;
+            }
+            
+            .action-btn:active::after {
+                content: attr(title);
+                position: absolute;
+                bottom: -45px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--dark);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 8px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                z-index: 1000;
+                border: 1px solid var(--glass-border);
+                box-shadow: var(--shadow);
+            }
+            
+            .light-theme .action-btn:active::after {
+                background: var(--light-dark);
+                color: var(--light-light);
+            }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            .header {
+                padding: 1rem 0;
+            }
+            
+            .logo {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+                padding: 0 10px;
+            }
+            
+            .quick-actions {
+                justify-content: center;
+                padding: 0 5px;
+                gap: 8px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .action-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                min-height: 44px;
+            }
+            
+            .action-btn span:not(.theme-text):not(.chat-text):not(.offline-mode-text) {
+                display: none;
+            }
+            
+            .glass-panel {
+                padding: 1.2rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .panel-title {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .file-drop-area {
+                padding: 2rem 1.5rem;
+            }
+            
+            .file-icon {
+                font-size: 3rem;
+            }
+            
+            .file-text {
+                font-size: 1.3rem;
+            }
+            
+            .browse-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            /* Compact status indicators */
+            .status-container {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .peer-count {
+                align-self: flex-start;
+            }
+            
+            /* Footer */
+            .footer {
+                padding: 1.5rem 0;
+                font-size: 0.8rem;
+            }
+            
+            /* Modals for mobile */
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            /* Better scrolling on mobile */
+            .transfer-list {
+                max-height: 300px;
+            }
+            
+            .chat-messages {
+                max-height: 250px;
+            }
+            
+            /* Chat bubbles for mobile */
+            .chat-bubble {
+                max-width: 90%;
+                padding: 8px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .chat-bubble.sent {
+                margin-left: auto;
+                margin-right: 10px;
+            }
+            
+            .chat-bubble.received {
+                margin-right: auto;
+                margin-left: 10px;
+            }
+            
+            /* Network status toggle for mobile */
+            .network-status-toggle {
+                min-width: 100px;
+                padding: 6px 12px;
+            }
+            
+            .toggle-switch-container {
+                width: 50px;
+                height: 26px;
+            }
+            
+            .toggle-switch-slider {
+                width: 20px;
+                height: 20px;
+                top: 3px;
+                left: 3px;
+            }
+            
+            .toggle-switch-slider.online {
+                transform: translateX(24px);
+            }
+            
+            .toggle-text {
+                font-size: 0.8rem;
+                min-width: 40px;
+            }
+        }
+
+        /* Small mobile screens */
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .logo-icon {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .quick-actions {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+            
+            .action-btn {
+                flex: 1 0 calc(50% - 6px);
+                min-width: 0;
+                justify-content: center;
+            }
+            
+            .connection-container {
+                gap: 1rem;
+            }
+            
+            .peer-id-container, .connect-form {
+                flex-direction: column;
+            }
+            
+            .copy-btn, .connect-btn {
+                width: 100%;
+            }
+            
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Prevent zoom on input focus for mobile */
+            input, select, textarea {
+                font-size: 16px;
+            }
+            
+            .network-status-toggle {
+                min-width: 90px;
+            }
+        }
+
+        /* Prevent zoom on input focus */
+        @media (max-width: 768px) {
+            input, select, textarea {
+                font-size: 16px !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- PWA Badge -->
+    <div id="pwaBadge" class="pwa-badge" style="display: none;">
+        <i class="fas fa-download"></i>
+        <span>Install Available</span>
+    </div>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
             <div class="logo">
                 <i class="fas fa-share-nodes logo-icon"></i>
-                <h1 class="logo-text">NiaShare <span style="font-size: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 4px 14px; border-radius: 25px; margin-left: 12px;">Beta 1.2</span></h1>
+                <h1 class="logo-text">NiaShare</h1>
             </div>
             <p class="tagline">Direct. Secure. Instant - The Next-Gen Data Share</p>
         </header>
 
         <!-- Quick Actions -->
         <div class="quick-actions">
-            <button id="themeToggle" class="action-btn">
-                <i class="fas fa-moon"></i> <span class="theme-text">Dark Mode</span>
+            <button id="themeToggle" class="action-btn" title="Toggle Dark/Light Mode">
+                <i class="fas fa-moon"></i> <span class="theme-text">Theme</span>
             </button>
-            <button id="qrCodeBtn" class="action-btn">
-                <i class="fas fa-qrcode"></i> Show QR Code
+            <button id="qrCodeBtn" class="action-btn" title="Show QR Code for easy connection">
+                <i class="fas fa-qrcode"></i> <span>QR Code</span>
             </button>
-            <button id="scanNetworkBtn" class="action-btn">
-                <i class="fas fa-wifi"></i> Scan Network
+            
+            <!-- NEW: Network Status Toggle Switch -->
+            <button id="networkStatusToggle" class="action-btn network-status-toggle" title="Toggle Online/Offline Mode">
+                <div class="toggle-switch-container online">
+                    <div class="toggle-switch-slider online"></div>
+                </div>
+                <div class="toggle-text online">Online</div>
             </button>
-            <button id="privacyToggle" class="action-btn">
-                <i class="fas fa-eye-slash"></i> <span class="privacy-text">Privacy: On</span>
+            
+            <button id="chatToggleBtn" class="action-btn" title="Toggle Chat Panel">
+                <i class="fas fa-comments"></i> <span class="chat-text">Chat</span>
             </button>
-            <button id="statsBtn" class="action-btn">
-                <i class="fas fa-chart-line"></i> Stats
-            </button>
-            <button id="offlineModeBtn" class="action-btn">
-                <i class="fas fa-satellite-dish"></i> <span class="offline-mode-text">Offline Mode: Off</span>
+            <button id="statsBtn" class="action-btn" title="View Statistics">
+                <i class="fas fa-chart-line"></i> <span>Stats</span>
             </button>
         </div>
 
@@ -1528,30 +2001,39 @@
                 <div class="offline-status-text">Offline Mode Active - Working without internet</div>
             </div>
             
-            <!-- Offline Mode Instructions -->
+            <!-- Mode Instructions -->
             <div id="offlineInstructions" class="offline-instructions" style="display: none;">
                 <div class="offline-instructions-title">
                     <i class="fas fa-info-circle"></i>
-                    How to use Offline Mode
+                    <span id="modeTitle">How to use Online Mode</span>
                 </div>
                 <ul class="offline-instructions-list">
                     <li>
-                        <i class="fas fa-qrcode"></i>
-                        <span>Share your QR code with another device on the same local network</span>
+                        <i class="fas fa-globe"></i>
+                        <span><strong>INTERNET SHARING:</strong> Transfer files anywhere using internet connection</span>
                     </li>
                     <li>
-                        <i class="fas fa-plug"></i>
-                        <span>Connect using the peer ID without internet connection</span>
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Speed depends on your internet connection quality</span>
                     </li>
                     <li>
-                        <i class="fas fa-bolt"></i>
-                        <span>File transfers work directly between devices at LAN speed</span>
+                        <i class="fas fa-share-alt"></i>
+                        <span>Can share with devices anywhere in the world</span>
                     </li>
                     <li>
-                        <i class="fas fa-shield-alt"></i>
-                        <span>All data stays local - no external servers involved</span>
+                        <i class="fas fa-wifi"></i>
+                        <span>Switch to "Offline" mode for faster local sharing</span>
                     </li>
                 </ul>
+                <div style="margin-top: 15px; padding: 12px; background: rgba(0,0,0,0.1); border-radius: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                        <i class="fas fa-lightbulb" style="color: var(--warning);"></i>
+                        <strong>Quick Tip:</strong>
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gray);">
+                        <span id="modeTip">Use "Online" for sharing over internet • Use "Offline" for fast local transfers</span>
+                    </div>
+                </div>
             </div>
             
             <div class="connection-container">
@@ -1598,8 +2080,8 @@
             </div>
         </div>
 
-        <!-- Chat Panel -->
-        <div class="glass-panel">
+        <!-- Chat Panel - HIDDEN BY DEFAULT -->
+        <div id="chatPanel" class="glass-panel" style="display: none;">
             <h2 class="panel-title">
                 <i class="fas fa-comments"></i>
                 Chat with Connected Peers
@@ -1607,8 +2089,8 @@
             
             <div class="chat-container">
                 <div id="chatMessages" class="chat-messages">
-                    <div class="message received">
-                        <strong>System:</strong> Welcome to NiaShare Beta 1.2! You can now chat with connected peers.
+                    <div class="chat-bubble received">
+                        <strong>System:</strong> Chat is hidden by default. Click "Chat" button above to show.
                     </div>
                 </div>
                 <div class="chat-input-container">
@@ -1703,7 +2185,7 @@
                 <div class="setting-item">
                     <div class="setting-label" style="display: flex; align-items: center; gap: 12px;">
                         <i class="fas fa-sync"></i>
-                        <span style="font-weight: 500;">Auto-Resume</span>
+                        <span style="font-weight:500;">Auto-Resume</span>
                     </div>
                     <label class="toggle-switch">
                         <input type="checkbox" id="autoResumeToggle" checked>
@@ -1715,9 +2197,13 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p style="margin-bottom: 10px;"><i class="fas fa-network-wired"></i> NiaShare Beta 1.2 • Complete Integrated Version • All transfers are peer-to-peer and encrypted</p>
+            <p style="margin-bottom: 10px;"><i class="fas fa-network-wired"></i> NiaShare Beta 1.3 • Complete Integrated Version • All transfers are peer-to-peer and encrypted</p>
             <p style="color: var(--gray); font-size: 0.9rem;">
                 <span id="transferStats">Ready to share files</span> • <span id="performanceStats">Optimized for local networks</span>
+                <span id="pwaStatus" style="margin-left: 10px; color: var(--secondary);"></span>
+            </p>
+            <p id="installHint" style="color: var(--primary); font-size: 0.8rem; margin-top: 10px; display: none;">
+                <i class="fas fa-lightbulb"></i> Tip: Install as app for better experience
             </p>
         </footer>
     </div>
@@ -1738,7 +2224,137 @@
 
     <script>
         // ============================================
-        // COMPLETE INTEGRATED NEO SHARE BETA 1.2 - FIXED OFFLINE MODE
+        // PWA SERVICE WORKER REGISTRATION
+        // ============================================
+        
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker registered:', registration.scope);
+                        
+                        // Check if update is available
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            console.log('🔄 Service Worker update found!');
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('🔄 New content available, please refresh!');
+                                    showNotification('New version available! Refresh to update.', 'info');
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('❌ Service Worker registration failed:', error);
+                    });
+            }
+        }
+        
+        // ============================================
+        // ENHANCED PWA INSTALLATION
+        // ============================================
+        
+        let deferredPrompt;
+        let isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                          window.navigator.standalone === true;
+        
+        function initPWA() {
+            console.log('🚀 Initializing PWA...');
+            
+            // Check if already installed
+            isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                           window.navigator.standalone === true ||
+                           document.referrer.includes('android-app://');
+            
+            if (isStandalone) {
+                console.log('✅ Already installed as PWA');
+                document.getElementById('pwaInstallBtn').style.display = 'none';
+                
+                // Update status in footer
+                const pwaStatus = document.getElementById('pwaStatus');
+                if (pwaStatus) {
+                    pwaStatus.innerHTML = '<i class="fas fa-check-circle"></i> Installed as App';
+                }
+                return;
+            }
+            
+            // Listen for install prompt
+            window.addEventListener('beforeinstallprompt', (e) => {
+                console.log('🎉 PWA install prompt available!');
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Show install button
+                const installBtn = document.getElementById('pwaInstallBtn');
+                installBtn.style.display = 'flex';
+                installBtn.addEventListener('click', installPWA);
+                
+                // Show hint in footer
+                const installHint = document.getElementById('installHint');
+                if (installHint) installHint.style.display = 'block';
+                
+                // Show notification after 3 seconds
+                setTimeout(() => {
+                    showNotification('📱 Install NiaShare as an app for better experience!', 'info');
+                }, 3000);
+            });
+            
+            // Listen for successful installation
+            window.addEventListener('appinstalled', () => {
+                console.log('✅ PWA installed successfully!');
+                document.getElementById('pwaInstallBtn').style.display = 'none';
+                
+                const installHint = document.getElementById('installHint');
+                if (installHint) installHint.style.display = 'none';
+                
+                showNotification('🎉 NiaShare installed! Launch from home screen.', 'success');
+                
+                // Update status in footer
+                const pwaStatus = document.getElementById('pwaStatus');
+                if (pwaStatus) {
+                    pwaStatus.innerHTML = '<i class="fas fa-check-circle"></i> Installed';
+                }
+            });
+            
+            // Check for manual installation capability
+            setTimeout(() => {
+                const isInstallable = 
+                    window.matchMedia('(display-mode: browser)').matches &&
+                    !isStandalone &&
+                    navigator.userAgent.match(/(Android|iPhone|iPad)/i);
+                
+                if (isInstallable && !deferredPrompt) {
+                    console.log('ℹ️ Device supports manual installation');
+                    const installHint = document.getElementById('installHint');
+                    if (installHint) {
+                        installHint.innerHTML = '<i class="fas fa-lightbulb"></i> Tip: Use browser menu to install as app';
+                        installHint.style.display = 'block';
+                    }
+                }
+            }, 2000);
+        }
+        
+        function installPWA() {
+            if (!deferredPrompt) {
+                showNotification('Use browser menu: Chrome → 3 dots → "Install NiaShare"', 'info');
+                return;
+            }
+            
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('✅ User accepted install');
+                } else {
+                    console.log('❌ User declined install');
+                }
+                deferredPrompt = null;
+            });
+        }
+
+        // ============================================
+        // COMPLETE INTEGRATED NEO SHARE BETA 1.3 - FIXED NETWORK STATUS TOGGLE
         // ============================================
 
         // Core App State
@@ -1753,7 +2369,7 @@
             receivedFiles: new Map(),
             activeFileTransfers: new Map(),
             
-            // Beta 1.2 Enhanced Features
+            // Beta 1.3 Enhanced Features
             settings: {
                 soundEnabled: true,
                 notificationsEnabled: true,
@@ -1778,7 +2394,8 @@
             pausedTransfers: new Set(),
             offlineConnections: new Map(),
             reconnectAttempts: 0,
-            maxReconnectAttempts: 5
+            maxReconnectAttempts: 5,
+            networkOnline: navigator.onLine
         };
 
         // Transfer Constants
@@ -1790,23 +2407,69 @@
         let elements = {};
 
         // ============================================
-        // IMPROVED OFFLINE MODE SYSTEM
+        // FIXED NETWORK STATUS TOGGLE SYSTEM
         // ============================================
 
-        function initOfflineMode() {
-            // Check online status
-            checkInternetConnection();
+        function initNetworkStatusToggle() {
+            const toggleBtn = document.getElementById('networkStatusToggle');
+            const toggleContainer = toggleBtn.querySelector('.toggle-switch-container');
+            const toggleSlider = toggleBtn.querySelector('.toggle-switch-slider');
+            const toggleText = toggleBtn.querySelector('.toggle-text');
             
-            // Setup offline mode button
-            if (elements.offlineModeBtn) {
-                elements.offlineModeBtn.addEventListener('click', toggleUserOfflineMode);
-                updateOfflineModeUI();
-            }
+            // Set initial state based on current mode
+            updateToggleUI();
             
-            // Monitor connection status
-            setInterval(checkInternetConnection, 10000); // Check every 10 seconds
+            // Toggle event listener
+            toggleBtn.addEventListener('click', toggleUserOfflineMode);
+            
+            // Check internet connection periodically
+            setInterval(checkInternetConnection, 10000);
+            
+            // Browser online/offline events
             window.addEventListener('online', handleOnlineStatus);
             window.addEventListener('offline', handleOfflineStatus);
+        }
+
+        function updateToggleUI() {
+            const toggleBtn = document.getElementById('networkStatusToggle');
+            if (!toggleBtn) return;
+            
+            const toggleContainer = toggleBtn.querySelector('.toggle-switch-container');
+            const toggleSlider = toggleBtn.querySelector('.toggle-switch-slider');
+            const toggleText = toggleBtn.querySelector('.toggle-text');
+            
+            if (state.settings.offlineMode) {
+                // Offline mode UI
+                toggleContainer.className = 'toggle-switch-container offline';
+                toggleSlider.className = 'toggle-switch-slider offline';
+                toggleText.className = 'toggle-text offline';
+                toggleText.textContent = 'Offline';
+                
+                if (state.settings.isUserOfflineMode) {
+                    toggleBtn.title = '✓ Fast local sharing - Works without internet';
+                } else {
+                    toggleBtn.title = 'Auto-switched to local sharing - No internet detected';
+                }
+                
+                // Add offline-active class for styling
+                toggleBtn.classList.add('offline-active');
+                
+                // Show offline status in panel
+                showOfflineStatus();
+            } else {
+                // Online mode UI
+                toggleContainer.className = 'toggle-switch-container online';
+                toggleSlider.className = 'toggle-switch-slider online';
+                toggleText.className = 'toggle-text online';
+                toggleText.textContent = 'Online';
+                toggleBtn.title = '✓ Internet sharing - Speed depends on your connection';
+                
+                // Remove offline-active class
+                toggleBtn.classList.remove('offline-active');
+                
+                // Hide offline status in panel
+                hideOfflineStatus();
+            }
         }
 
         function checkInternetConnection() {
@@ -1814,8 +2477,7 @@
                 // Auto-switch to offline mode when internet is lost
                 console.log('Internet connection lost, switching to offline mode');
                 state.settings.offlineMode = true;
-                updateOfflineModeUI();
-                showOfflineStatus();
+                updateToggleUI();
                 showNotification('Internet connection lost. Switching to Offline Mode.', 'offline');
                 
                 // Reinitialize with offline settings
@@ -1827,8 +2489,7 @@
                 // Auto-switch back to online when internet is restored
                 console.log('Internet connection restored, switching back to online mode');
                 state.settings.offlineMode = false;
-                updateOfflineModeUI();
-                hideOfflineStatus();
+                updateToggleUI();
                 showNotification('Internet connection restored. Switching back to Online Mode.', 'success');
                 
                 // Reinitialize with online settings
@@ -1856,8 +2517,7 @@
             if (state.settings.isUserOfflineMode) {
                 // User wants offline mode
                 state.settings.offlineMode = true;
-                updateOfflineModeUI();
-                showOfflineStatus();
+                updateToggleUI();
                 showNotification('Offline Mode enabled manually. Working without internet.', 'offline');
                 
                 // Reinitialize with offline settings
@@ -1868,8 +2528,7 @@
             } else {
                 // User wants online mode (if internet is available)
                 state.settings.offlineMode = false;
-                updateOfflineModeUI();
-                hideOfflineStatus();
+                updateToggleUI();
                 
                 if (navigator.onLine) {
                     showNotification('Switching back to Online Mode.', 'info');
@@ -1884,7 +2543,7 @@
                     showNotification('Cannot switch to Online Mode - No internet connection detected.', 'error');
                     state.settings.isUserOfflineMode = true; // Keep in offline mode
                     state.settings.offlineMode = true;
-                    updateOfflineModeUI();
+                    updateToggleUI();
                 }
             }
             
@@ -1898,6 +2557,15 @@
             }
             if (elements.offlineInstructions) {
                 elements.offlineInstructions.style.display = 'block';
+                const title = document.getElementById('modeTitle');
+                const tip = document.getElementById('modeTip');
+                if (state.settings.offlineMode) {
+                    if (title) title.textContent = 'How to use Offline Mode (Local)';
+                    if (tip) tip.textContent = '✓ Use for fast local transfers • ✗ No internet required';
+                } else {
+                    if (title) title.textContent = 'How to use Online Mode (Internet)';
+                    if (tip) tip.textContent = '✓ Share anywhere • Speed depends on internet';
+                }
             }
             
             // Update connection UI styling
@@ -1932,38 +2600,123 @@
             }
         }
 
-        function updateOfflineModeUI() {
-            if (!elements.offlineModeBtn) return;
-            
-            const offlineText = elements.offlineModeBtn.querySelector('.offline-mode-text');
-            const icon = elements.offlineModeBtn.querySelector('i');
-            
-            if (state.settings.offlineMode) {
-                if (state.settings.isUserOfflineMode) {
-                    offlineText.textContent = 'Offline Mode: On (Manual)';
-                    elements.offlineModeBtn.classList.add('offline-active');
-                } else {
-                    offlineText.textContent = 'Offline Mode: On (Auto)';
-                    elements.offlineModeBtn.classList.add('offline-active');
-                }
-                icon.className = 'fas fa-satellite-dish';
-                
-                // Update tagline
-                const tagline = document.querySelector('.tagline');
-                if (tagline) {
-                    tagline.textContent = 'Complete integrated version with Offline Mode - Fast, secure file sharing with chat & themes';
-                }
-            } else {
-                offlineText.textContent = 'Offline Mode: Off';
-                icon.className = 'fas fa-satellite-dish';
-                elements.offlineModeBtn.classList.remove('offline-active');
-                
-                // Update tagline
-                const tagline = document.querySelector('.tagline');
-                if (tagline) {
-                    tagline.textContent = 'Direct. Secure. Instant - The Next-Gen Data Share';
-                }
+        // ============================================
+        // FIXED CHAT SYSTEM WITH TOGGLE
+        // ============================================
+
+        function initChatSystem() {
+            if (elements.sendChatBtn) {
+                elements.sendChatBtn.addEventListener('click', sendChatMessage);
             }
+            
+            if (elements.chatInput) {
+                elements.chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') sendChatMessage();
+                });
+            }
+            
+            // Chat toggle functionality
+            if (elements.chatToggleBtn) {
+                elements.chatToggleBtn.addEventListener('click', toggleChatPanel);
+            }
+            
+            console.log('Chat system initialized');
+        }
+
+        function toggleChatPanel() {
+            if (!elements.chatPanel) return;
+            
+            if (elements.chatPanel.style.display === 'none') {
+                elements.chatPanel.style.display = 'block';
+                elements.chatToggleBtn.querySelector('.chat-text').textContent = 'Hide Chat';
+                elements.chatToggleBtn.style.background = 'rgba(99, 102, 241, 0.15)';
+                elements.chatToggleBtn.style.borderColor = 'var(--primary)';
+                
+                // Scroll to chat
+                setTimeout(() => {
+                    elements.chatPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            } else {
+                elements.chatPanel.style.display = 'none';
+                elements.chatToggleBtn.querySelector('.chat-text').textContent = 'Chat';
+                elements.chatToggleBtn.style.background = '';
+                elements.chatToggleBtn.style.borderColor = '';
+            }
+        }
+
+        function sendChatMessage() {
+            if (!elements.chatInput) return;
+            
+            const message = elements.chatInput.value.trim();
+            if (!message) return;
+            
+            // Ensure chat panel is visible when sending
+            if (elements.chatPanel && elements.chatPanel.style.display === 'none') {
+                toggleChatPanel();
+            }
+            
+            // Add to local chat with FIXED chat bubble
+            addChatMessage(message, 'sent', 'You');
+            
+            // Send to all connected peers
+            state.connections.forEach((conn, peerId) => {
+                if (conn.open) {
+                    conn.send({
+                        type: 'chat-message',
+                        text: message,
+                        sender: 'You',
+                        timestamp: Date.now()
+                    });
+                }
+            });
+            
+            // Clear input
+            elements.chatInput.value = '';
+            
+            // Save to history
+            state.chatHistory.push({
+                text: message,
+                sender: 'me',
+                timestamp: Date.now()
+            });
+        }
+
+        function addChatMessage(text, type, sender) {
+            if (!elements.chatMessages) return;
+            
+            // Show chat panel if hidden when receiving message
+            if (type === 'received' && elements.chatPanel && elements.chatPanel.style.display === 'none') {
+                // Flash the chat button to indicate new message
+                elements.chatToggleBtn.style.animation = 'pulse 1s 3';
+                setTimeout(() => {
+                    elements.chatToggleBtn.style.animation = '';
+                }, 3000);
+            }
+            
+            // Create chat bubble with FIXED styling
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-bubble ${type}`;
+            
+            // Format message with sender name
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            
+            elements.chatMessages.appendChild(messageDiv);
+            
+            // Auto scroll to bottom
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+            
+            // Save to chat history
+            state.chatHistory.push({
+                text: text,
+                sender: sender,
+                type: type,
+                timestamp: Date.now()
+            });
+        }
+
+        // Handle incoming chat messages
+        function handleIncomingChat(data, peerId) {
+            addChatMessage(data.text, 'received', data.sender || peerId.substring(0, 8));
         }
 
         // ============================================
@@ -2096,8 +2849,7 @@
                         console.log('Max reconnection attempts reached, switching to offline mode');
                         state.settings.offlineMode = true;
                         state.settings.isUserOfflineMode = false; // Auto-switch, not manual
-                        updateOfflineModeUI();
-                        showOfflineStatus();
+                        updateToggleUI();
                         
                         // Use generated ID without server
                         if (elements.peerIdDisplay) elements.peerIdDisplay.textContent = peerId;
@@ -2154,8 +2906,7 @@
                         // Try to switch to offline mode
                         if (!state.settings.isUserOfflineMode) {
                             state.settings.offlineMode = true;
-                            updateOfflineModeUI();
-                            showOfflineStatus();
+                            updateToggleUI();
                         }
                         
                         if (elements.peerIdDisplay) elements.peerIdDisplay.textContent = peerId;
@@ -2236,7 +2987,7 @@
                 } else if (data.type === 'file-complete') {
                     handleFileComplete(data, peerId);
                 } else if (data.type === 'chat-message') {
-                    addChatMessage(data.text, 'received', data.sender || peerId.substring(0, 8));
+                    handleIncomingChat(data, peerId);
                 } else if (data.type === 'message') {
                     showNotification(`Message from ${peerId.substring(0, 8)}: ${data.text}`, 'info');
                 } else if (data.type === 'offline-ping') {
@@ -2808,7 +3559,7 @@
         }
 
         // ============================================
-        // BETA 1.2 ENHANCED FEATURES
+        // BETA 1.3 ENHANCED FEATURES
         // ============================================
 
         // Theme System
@@ -2844,10 +3595,10 @@
             const icon = elements.themeToggle.querySelector('i');
             
             if (theme === 'light') {
-                themeText.textContent = 'Light Mode';
+                themeText.textContent = 'Light';
                 icon.className = 'fas fa-sun';
             } else {
-                themeText.textContent = 'Dark Mode';
+                themeText.textContent = 'Dark';
                 icon.className = 'fas fa-moon';
             }
         }
@@ -2970,63 +3721,6 @@
             // This function is called when peer ID is ready
         }
 
-        // Chat System
-        function initChatSystem() {
-            if (elements.sendChatBtn) {
-                elements.sendChatBtn.addEventListener('click', sendChatMessage);
-            }
-            
-            if (elements.chatInput) {
-                elements.chatInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') sendChatMessage();
-                });
-            }
-            
-            console.log('Chat system initialized');
-        }
-
-        function sendChatMessage() {
-            if (!elements.chatInput) return;
-            
-            const message = elements.chatInput.value.trim();
-            if (!message) return;
-            
-            // Add to local chat
-            addChatMessage(message, 'sent', 'You');
-            
-            // Send to all connected peers
-            state.connections.forEach((conn, peerId) => {
-                if (conn.open) {
-                    conn.send({
-                        type: 'chat-message',
-                        text: message,
-                        sender: 'You',
-                        timestamp: Date.now()
-                    });
-                }
-            });
-            
-            // Clear input
-            elements.chatInput.value = '';
-            
-            // Save to history
-            state.chatHistory.push({
-                text: message,
-                sender: 'me',
-                timestamp: Date.now()
-            });
-        }
-
-        function addChatMessage(text, type, sender) {
-            if (!elements.chatMessages) return;
-            
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
-            elements.chatMessages.appendChild(messageDiv);
-            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
-        }
-
         // Statistics System
         function initStatsDashboard() {
             if (elements.statsBtn) {
@@ -3097,42 +3791,6 @@
                 }
                 elements.performanceStats.textContent = perfText;
             }
-        }
-
-        // PWA Installation
-        function initPWAInstall() {
-            let deferredPrompt;
-            
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                if (elements.pwaInstallBtn) {
-                    elements.pwaInstallBtn.style.display = 'flex';
-                }
-            });
-            
-            if (elements.pwaInstallBtn) {
-                elements.pwaInstallBtn.addEventListener('click', async () => {
-                    if (!deferredPrompt) return;
-                    
-                    deferredPrompt.prompt();
-                    const { outcome } = await deferredPrompt.userChoice;
-                    
-                    if (outcome === 'accepted') {
-                        showNotification('NiaShare will be installed shortly!', 'success');
-                        elements.pwaInstallBtn.style.display = 'none';
-                    }
-                    
-                    deferredPrompt = null;
-                });
-            }
-            
-            window.addEventListener('appinstalled', () => {
-                showNotification('NiaShare installed successfully!', 'success');
-                if (elements.pwaInstallBtn) {
-                    elements.pwaInstallBtn.style.display = 'none';
-                }
-            });
         }
 
         // Transfer Completion Effects
@@ -3410,7 +4068,10 @@
 
         // Update connection status
         function updateStatus(status, text) {
-            if (elements.statusDot) elements.statusDot.className = 'status-dot ' + status;
+            if (elements.statusDot) {
+                elements.statusDot.className = 'status-dot';
+                if (status) elements.statusDot.classList.add(status);
+            }
             if (elements.statusText) elements.statusText.textContent = text;
             state.isConnected = status === 'connected' || status === 'connecting' || status === 'offline';
         }
@@ -3518,6 +4179,8 @@
             const savedUserOfflineMode = localStorage.getItem('NiaShare_userOfflineMode');
             if (savedUserOfflineMode) {
                 state.settings.isUserOfflineMode = savedUserOfflineMode === 'true';
+                state.settings.offlineMode = state.settings.isUserOfflineMode;
+                updateToggleUI();
             }
         }
 
@@ -3670,34 +4333,6 @@
             if (elements.clearBtn) {
                 elements.clearBtn.addEventListener('click', clearCompletedTransfers);
             }
-            
-            // Network scan
-            if (document.getElementById('scanNetworkBtn')) {
-                document.getElementById('scanNetworkBtn').addEventListener('click', () => {
-                    showNotification('Network scanning coming soon!', 'info');
-                });
-            }
-            
-            // Privacy toggle
-            if (elements.privacyToggle) {
-                elements.privacyToggle.addEventListener('click', () => {
-                    state.settings.privacyMode = !state.settings.privacyMode;
-                    const privacyText = elements.privacyToggle.querySelector('.privacy-text');
-                    const icon = elements.privacyToggle.querySelector('i');
-                    
-                    if (state.settings.privacyMode) {
-                        privacyText.textContent = 'Privacy: On';
-                        icon.style.color = 'var(--secondary)';
-                        showNotification('Privacy mode enabled', 'success');
-                    } else {
-                        privacyText.textContent = 'Privacy: Off';
-                        icon.style.color = '';
-                        showNotification('Privacy mode disabled', 'info');
-                    }
-                    
-                    saveSettings();
-                });
-            }
         }
 
         // Copy peer ID
@@ -3752,7 +4387,7 @@
         // ============================================
 
         function initNiaShare() {
-            console.log('Initializing NiaShare Beta 1.2 - Fixed Offline Mode');
+            console.log('Initializing NiaShare Beta 1.3 - Fixed Network Status Toggle with PWA');
             
             // Initialize elements object
             elements = {
@@ -3774,19 +4409,19 @@
                 transferList: document.getElementById('transferList'),
                 clearBtn: document.getElementById('clearBtn'),
                 
-                // Beta 1.2 Features
+                // Beta 1.3 Features
                 themeToggle: document.getElementById('themeToggle'),
                 qrCodeBtn: document.getElementById('qrCodeBtn'),
                 qrModal: document.getElementById('qrModal'),
                 qrCodeCanvas: document.getElementById('qrCodeCanvas'),
-                privacyToggle: document.getElementById('privacyToggle'),
                 statsBtn: document.getElementById('statsBtn'),
                 statsModal: document.getElementById('statsModal'),
                 chatMessages: document.getElementById('chatMessages'),
                 chatInput: document.getElementById('chatInput'),
                 sendChatBtn: document.getElementById('sendChatBtn'),
+                chatToggleBtn: document.getElementById('chatToggleBtn'),
+                chatPanel: document.getElementById('chatPanel'),
                 notification: document.getElementById('notification'),
-                offlineModeBtn: document.getElementById('offlineModeBtn'),
                 offlineStatus: document.getElementById('offlineStatus'),
                 offlineInstructions: document.getElementById('offlineInstructions'),
                 
@@ -3806,19 +4441,20 @@
                 performanceStats: document.getElementById('performanceStats'),
                 
                 // PWA
-                pwaInstallBtn: document.getElementById('pwaInstallBtn')
+                pwaInstallBtn: document.getElementById('pwaInstallBtn'),
+                pwaStatus: document.getElementById('pwaStatus'),
+                installHint: document.getElementById('installHint')
             };
             
             // Setup event listeners first
             setupEventListeners();
             
-            // Initialize Beta 1.2 features
+            // Initialize Beta 1.3 features
             initThemeSystem();
             initQRCodeSystem();
             initChatSystem();
             initStatsDashboard();
-            initPWAInstall();
-            initOfflineMode();
+            initNetworkStatusToggle(); // NEW: Network status toggle
             
             // Initialize PeerJS (starts in online mode by default)
             initPeer(false);
@@ -3828,8 +4464,11 @@
             
             // Show welcome message
             setTimeout(() => {
-                showNotification('NiaShare Beta 1.2 Ready! By default in Online Mode.', 'success');
-                addChatMessage('Welcome to NiaShare Beta 1.2! Starting in Online Mode. Click "Offline Mode" for local network sharing.', 'received', 'System');
+                showNotification('NiaShare Beta 1.3 Ready! Click "Chat" button to open chat.', 'success');
+                // Add initial chat message
+                if (elements.chatMessages) {
+                    addChatMessage('Welcome to NiaShare Beta 1.3! Starting in Online Mode. Click "Offline Mode" for local network sharing.', 'received', 'System');
+                }
             }, 1500);
             
             // Clean up on page unload
@@ -3846,8 +4485,20 @@
             });
         }
 
-        // Start everything
-        document.addEventListener('DOMContentLoaded', initNiaShare);
+        // ============================================
+        // START EVERYTHING
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register Service Worker FIRST
+            registerServiceWorker();
+            
+            // Start PWA
+            initPWA();
+            
+            // Start NiaShare app
+            setTimeout(initNiaShare, 100);
+        });
     </script>
 </body>
 </html>
