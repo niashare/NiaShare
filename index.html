@@ -2228,9 +2228,9 @@
         // ============================================
         
         function registerServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/NiaShare/sw.js')  // Changed this line
+      .then(registration => {
                         console.log('✅ Service Worker registered:', registration.scope);
                         
                         // Check if update is available
